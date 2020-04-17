@@ -9,6 +9,7 @@ CORS(app)
 
 @app.route('/hello')
 def home():
+    #returns the hello message for testing
     return jsonify({'msg': 'Hello'})
 
 
