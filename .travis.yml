@@ -6,14 +6,15 @@ services:
   - docker
 
 install:
-  - docker build -f Dockerfile -t rahulh25/devopsfinalshorturlapi .
-  - docker run -d -p 5050:5000 rahulh25/devopsfinalshorturlapi
+  - docker pull rahulh25/devopsfinalshorturlapi
+  - docker run -d -p 127.0.0.1:5000:5000 rahulh25/devopsfinalshorturlapi
 
 before_script:
   - pip install -r requirements.txt
   - pip install mock
   - pip install requests
   - pip install feedparser
+  - pip install docker pytest
 
 script:
-  - docker ps | grep -q blog
+  - ping 127.0.0.1:5000 -n5
