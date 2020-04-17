@@ -1,20 +1,11 @@
 language: python
 python:
-  - 3.8
-
-services:
-  - docker
+  - "3.8"
 
 install:
-  - docker pull rahulh25/devopsfinalshorturlapi
-  - docker run -d -p 127.0.0.1:5000:5000 rahulh25/devopsfinalshorturlapi
-
-before_script:
-  - pip install -r requirements.txt
-  - pip install mock
-  - pip install requests
-  - pip install feedparser
-  - pip install docker pytest
+  - docker build -f Dockerfile -t rahulh25/devopsfinalshorturlapi .
+  - docker run -d -p 127.0.0.1:80:4000 --name myapp rahulh25/devopsfinalshorturlapi
 
 script:
-  - curl 127.0.0.1:5000
+  - docker ps | grep -i myapp
+  - python test.py
