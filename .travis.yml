@@ -7,7 +7,7 @@ services:
 
 install:
   - docker pull rahulh25/devopsfinalshorturlapi
-  - docker run -d -p 5000:5000 rahulh25/devopsfinalshorturlapi
+  - docker run -d -p 127.0.0.1:5000:5000 rahulh25/devopsfinalshorturlapi
 
 before_script:
   - pip install -r requirements.txt
@@ -17,4 +17,4 @@ before_script:
   - pip install docker pytest
 
 script:
-  - ping -c 3 192.168.99.100:5000
+  - curl 127.0.0.1:5000
