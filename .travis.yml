@@ -3,8 +3,9 @@ python:
   - "3.8"
 
 install:
+  - pip install requests
   - docker build -f Dockerfile -t rahulh25/devopsfinalshorturlapi .
-  - docker run -d -p 127.0.0.1:80:4000 --name myapp rahulh25/devopsfinalshorturlapi
+  - docker run -d -p 127.0.0.1:80:5000 --name myapp rahulh25/devopsfinalshorturlapi
 
 script:
   - docker ps | grep -i myapp
