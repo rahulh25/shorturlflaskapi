@@ -1,12 +1,19 @@
-# Config file for automatic testing at travis-ci.org
-sudo: false # http://docs.travis-ci.com/user/migrating-from-legacy/
 language: python
 python:
-  - 3.6
   - 3.8
-install: pip install -r requirements.txt
-before_script:
-  - export FLASK_APP="$TRAVIS_BUILD_DIR/app.py"
-  - export FLASK_DEBUG=1
 
-script: flask test
+services:
+  - docker
+
+install:
+  - docker build -f Dockerfile -t rahulh25/devopsfinalshorturlapi .
+  - docker run -d -p 5050:5000 rahulh25/devopsfinalshorturlapi
+
+before_script:
+  - pip install -r requirements.txt
+  - pip install mock
+  - pip install requests
+  - pip install feedparser
+
+script:
+  - docker ps | grep -q blog
